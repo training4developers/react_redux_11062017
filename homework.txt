@@ -1,0 +1,5 @@
+Homework
+
+1. Convert CarTable to stateless function.
+
+2. Add propTypes to all of the components.
