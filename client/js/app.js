@@ -1,4 +1,4 @@
-import { bindActionCreators } from 'redux';
+import { createStore, bindActionCreators } from 'redux';
 
 // Reducer Functions are Pure Functions
 // 1. The only data input is passed through the parameters
@@ -20,21 +20,21 @@ const calcReducer = (state = 0, action) => {
 
 };
 
-const createStore = (reducer) => {
+// const createStore = (reducer) => {
 
-  let currentState = undefined;
-  const callbackFns = [];
+//   let currentState = undefined;
+//   const callbackFns = [];
 
-  return {
-    getState: () => currentState,
-    dispatch: action => {
-      currentState = reducer(currentState, action);
-      callbackFns.forEach(cb => cb());
-    },
-    subscribe: cb => callbackFns.push(cb),
-  };
+//   return {
+//     getState: () => currentState,
+//     dispatch: action => {
+//       currentState = reducer(currentState, action);
+//       callbackFns.forEach(cb => cb());
+//     },
+//     subscribe: cb => callbackFns.push(cb),
+//   };
 
-};
+// };
 
 const store = createStore(calcReducer);
 
