@@ -1,3 +1,5 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { createStore, bindActionCreators } from 'redux';
 
 // Reducer Functions are Pure Functions
@@ -58,4 +60,20 @@ subtract(2);
 add(3);
 subtract(4);
 add(5);
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('ran constructor');
+  }
+  render() {
+    return <span>{this.props.msg}</span>;
+  }
+}
+
+ReactDOM.render(<Demo msg="hi" />, document.querySelector('main'));
+ReactDOM.render(<Demo msg="bye" />, document.querySelector('main'));
+
+
+
 
