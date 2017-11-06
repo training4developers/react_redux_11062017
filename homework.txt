@@ -1,5 +1,21 @@
 Homework
 
-1. Convert CarTable to stateless function.
+1. Create a store for managing a list of colors. Do not store colors on a rest service, only use the memory of the store.
 
-2. Add propTypes to all of the components.
+state = {
+  colors: []
+}
+
+2. The following actions should be supported: adding a color and deleting a color.
+
+3. Using the color tool components (or create new ones), to display a list of colors.
+
+4. Each color row should have a delete button which fires a delete action for the color.
+
+ { ...state, colors: state.colors.slice(0,1).concat(state.colors.slice(2) };
+
+5. Under the color list, should be a color form which accepts new color and when the button is clicked, an add color action is fired off adding the new color.
+
+{ ...state, colors: state.colors.concat(newColor) }
+
+Bonus: Use component lifecycle functions and "forceUpdate" to manage the connection between the component tree and the Redux store. Do this instead of calling ReactDOM.render twice.
