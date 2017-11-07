@@ -1,8 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as ActionCreators from './actions/calc-actions';
-import { Calculator } from './components/calculator';
+import * as ActionCreators from '../actions/calc-actions';
+import { Calculator } from '../components/calculator';
 
 const mapStateToProps = state => ({ result: state });
 const mapDispatchToProps = dispatch => bindActionCreators({
