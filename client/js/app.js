@@ -1,20 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as PropTypes from 'prop-types';
 import { createStore, bindActionCreators } from 'redux';
 
-// Reducer Functions are Pure Functions
-// 1. The only data input is passed through the parameters
-// 2. The parameters should be treated as immutable
-// 3. No side effects
-// 4. The only output is the value returned from the function
 const calcReducer = (state = 0, action) => {
-
-  console.log('state', state, 'action', action);
 
   switch (action.type) {
     case 'ADD':
       return state + action.value;
     case 'SUBTRACT':
+      return state - action.value;
+    case 'MULTIPLY':
+      return state - action.value;
+    case 'DIVIDE':
       return state - action.value;
     default:
       return state;
@@ -22,57 +20,48 @@ const calcReducer = (state = 0, action) => {
 
 };
 
-// const createStore = (reducer) => {
-
-//   let currentState = undefined;
-//   const callbackFns = [];
-
-//   return {
-//     getState: () => currentState,
-//     dispatch: action => {
-//       currentState = reducer(currentState, action);
-//       callbackFns.forEach(cb => cb());
-//     },
-//     subscribe: cb => callbackFns.push(cb),
-//   };
-
-// };
-
 const store = createStore(calcReducer);
-
-store.subscribe(() => {
-  console.log('new state', store.getState());
-});
 
 const addActionCreator = value => ({ type: 'ADD', value });
 const subtractActionCreator = value => ({ type: 'SUBTRACT', value });
+const multiplyActionCreator = value => ({ type: 'MULTIPLY', value });
+const divideActionCreator = value => ({ type: 'DIVIDE', value });
 
-// this is produced from the bind action creators below
-// const add = value => store.dispatch(addActionCreator(value));
-// const subtract = value => store.dispatch(subtractActionCreator(value));
-const { add, subtract } = bindActionCreators({
+const actions = bindActionCreators({
   add: addActionCreator,
   subtract: subtractActionCreator,
+  multiply: multiplyActionCreator,
+  divide: divideActionCreator,
 }, store.dispatch);
 
-add(1);
-subtract(2);
-add(3);
-subtract(4);
-add(5);
+class Calculator extends React.Component {
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log('ran constructor');
-  }
+  static propTypes = {
+    result: PropTypes.number.isRequired,
+    add: PropTypes.func.isRequired,
+    subtract: PropTypes.func.isRequired,
+    multiply: PropTypes.func.isRequired,
+    divide: PropTypes.func.isRequired,
+  };
+
   render() {
-    return <span>{this.props.msg}</span>;
+    return <form>
+      <label>Num:</label>
+      <input type="text" defaultValue={0} ref={input => this.numInput = input} />
+      <button type="button" onClick={() => this.props.add(Number(this.numInput.value))}>+</button>
+      <button type="button" onClick={() => this.props.subtract(Number(this.numInput.value))}>-</button>
+      <button type="button" onClick={() => this.props.multiply(Number(this.numInput.value))}>*</button>
+      <button type="button" onClick={() => this.props.divide(Number(this.numInput.value))}>/</button>
+      <div>Result: {this.props.result}</div>
+    </form>;
   }
 }
 
-ReactDOM.render(<Demo msg="hi" />, document.querySelector('main'));
-ReactDOM.render(<Demo msg="bye" />, document.querySelector('main'));
+store.subscribe(() => {
+  ReactDOM.render(<Calculator result={store.getState()} {...actions} />, document.querySelector('main'));
+});
+
+ReactDOM.render(<Calculator result={store.getState()} {...actions} />, document.querySelector('main'));
 
 
 
