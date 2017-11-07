@@ -1,21 +1,15 @@
-Homework
+Exercise
 
-1. Create a store for managing a list of colors. Do not store colors on a rest service, only use the memory of the store.
 
-state = {
-  colors: []
-}
+1. Ensure the Car Tool application
 
-2. The following actions should be supported: adding a color and deleting a color.
+ a. Displays a table of cars
+ b. Add a cars
+ c. Delete a cars
+ d. All of the async operations
 
-3. Using the color tool components (or create new ones), to display a list of colors.
+2. Write mapStateToProps and mapDispatchToProps functions for CarTool.
 
-4. Each color row should have a delete button which fires a delete action for the color.
+Do not create a container or use connect or anything to make it all work. Simply write the functions.
 
- { ...state, colors: state.colors.slice(0,1).concat(state.colors.slice(2) };
-
-5. Under the color list, should be a color form which accepts new color and when the button is clicked, an add color action is fired off adding the new color.
-
-{ ...state, colors: state.colors.concat(newColor) }
-
-Bonus: Use component lifecycle functions and "forceUpdate" to manage the connection between the component tree and the Redux store. Do this instead of calling ReactDOM.render twice.
+Look at the state and actions inside Car Tool. The state and actions will be moved to Redux, therefore what needs to be passed a props (data and functions) for the application to still work.
