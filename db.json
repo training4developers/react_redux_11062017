@@ -1,4 +1,21 @@
 {
+  "todos": [
+    {
+      "id": 1,
+      "todo": "Todo 1",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "todo": "Todo 2",
+      "completed": false
+    },
+    {
+      "todo": "To Do 3",
+      "completed": false,
+      "id": 3
+    }
+  ],
   "colors": [
     {
       "id": 1,

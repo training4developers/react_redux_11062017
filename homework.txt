@@ -1,15 +1,20 @@
 Exercise
 
+1. Finish implementing the remove todo.
 
-1. Ensure the Car Tool application
+   a. Delete using a button next to each todo in the list.
 
- a. Displays a table of cars
- b. Add a cars
- c. Delete a cars
- d. All of the async operations
+   b. After the deletion refresh the list from the REST service.
 
-2. Write mapStateToProps and mapDispatchToProps functions for CarTool.
+2. Finish implementing toggle completed.
 
-Do not create a container or use connect or anything to make it all work. Simply write the functions.
+  a. Adding a checkbox next to each todo. Should be a controlled component whose state is managed
+  in Redux. There should be no local component state. The value of the checkbox should be populated by props.
 
-Look at the state and actions inside Car Tool. The state and actions will be moved to Redux, therefore what needs to be passed a props (data and functions) for the application to still work.
+  b. When the checkbox is clicked, update the todo on the REST service, but DO NOT refresh
+  the list from the REST service.
+
+  c. Find the particular todo to be toggled in the array, and immutably update the array to
+  the new toggle state.
+
+  d. To show the todo as complete, display a checkmark in the checkbox.

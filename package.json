@@ -12,7 +12,7 @@
     "server-init": "babel server --out-dir server-dist && node ./server-dist/output-schema",
     "server": "concurrently \"babel server --out-dir server-dist --watch\" \"nodemon --watch server-dist ./server-dist/index\"",
     "client": "\"webpack-dev-server\"",
-    "rest": "json-server --watch --port 3010 db.json",
+    "rest": "json-server --watch --port 3050 db.json",
     "relay": "relay-compiler --watch --src ./client/js/ --schema ./schema.graphql",
     "relay:once": "relay-compiler --src ./client/js/ --schema ./schema.graphql",
     "graphql-relay": "npm run server-init && npm run relay:once"
